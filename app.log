@@ -1,0 +1,2 @@
+2024-09-27 01:22:50 [error]: Error retrieving user list: Cannot read properties of undefined (reading 'findAll')
+2024-09-27 01:23:47 [info]: User list retrieved successfully
