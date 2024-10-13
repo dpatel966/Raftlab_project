@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const { User } = require('../models/index');
 const logger = require('../winstonconfig/winston'); 
-const { where } = require('sequelize');
 
 router.get('/list', async (req, res) => {
     try {
@@ -66,6 +65,7 @@ router.delete('/delete/:id', async (req, res) => {
             logger.info(`User deleted successfully: ${userId}`); 
             res.json({
                 status: true,
+                data,
                 message: "User deleted successfully"
             });
         }
@@ -88,7 +88,7 @@ router.put('/update/:id', async (req, res) => {
             { name, email, phone },
            { where:{id:userId}});
 
-        if (!user) {
+        if (user == 0) {
             logger.warn(`User not found for update: ${userId}`);
             return res.status(404).json({
                 status: false,
